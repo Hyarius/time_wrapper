@@ -12,7 +12,8 @@ CPPFLAGS=	-Iincludes -Iincludes/template -I$(SDL_MAIN_INCLUDE_PATH) -I$(SDL_IMAG
 DIR = 			srcs/ \
 				srcs/basics \
 				srcs/gui_comp \
-				srcs/gui
+				srcs/gui \
+				srcs/time
 
 SRCS_LIST = $(foreach dir, $(DIR), $(wildcard $(dir)/*.cpp))
 
@@ -29,7 +30,7 @@ CFLAGS=		-std=c++11
 
 CC=			g++
 
-vpath %.cpp ./srcs/:./srcs/basics/:./srcs/gui_comp/:./srcs/gui/:./srcs/taag/
+vpath %.cpp ./srcs/:./srcs/basics/:./srcs/gui_comp/:./srcs/gui/:./srcs/time/
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(SDL_MAIN_LIBS_PATH):$(SDL_IMAGE_LIBS_PATH):$(SDL_MIXER_LIBS_PATH):$(SDL_TTF_LIBS_PATH)
 

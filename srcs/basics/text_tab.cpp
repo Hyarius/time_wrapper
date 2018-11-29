@@ -10,6 +10,9 @@ void				set_lang_text(string path)
 
 	file.open(path);
 
+	if (!(file.good()))
+		error_exit("Can't open the file : " + path, 2468);
+
 	while (file.eof() == false)
 	{
 		line = get_strsplit(&file, ";", 2);
