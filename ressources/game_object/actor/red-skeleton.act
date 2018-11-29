@@ -1,0 +1,21 @@
+name:reddie
+tileset: 6
+sprite_pos: 2.000000:2.000000
+level:0
+point:0
+health:100
+action:6
+mouvement:3
+initiative:50
+attack phy:0
+defense phy:0
+attack mag:0
+defense mag:0
+spell1:NULL
+spell2:fire1
+spell3:fire13
+spell4:fire14
+spell5:fire11
+spell6:NULL
+spell7:fire10
+spell8:NULL

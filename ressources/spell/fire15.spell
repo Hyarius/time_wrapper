@@ -1,0 +1,8 @@
+name		:Fire 15
+description	:Fire spell number 15
+icon		:ressources/assets/iconset/fire_spell_icons.png:4:4
+sprite		:3:3
+pa			:3
+pm			:0
+range		:1:4
+effect1		:1:10:2:2

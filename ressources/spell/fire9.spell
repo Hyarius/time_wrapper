@@ -1,0 +1,8 @@
+name		:Fire 9
+description	:Fire spell number 9
+icon		:ressources/assets/iconset/fire_spell_icons.png:4:4
+sprite		:1:2
+pa			:3
+pm			:0
+range		:1:4
+effect1		:1:10:2:2
