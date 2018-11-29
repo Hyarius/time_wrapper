@@ -15,11 +15,10 @@ enum DIRECTION
 
 typedef struct		s_cell
 {
-	t_vect			coord;
 	bool			obstacle;
 	int				sprite;
 					s_cell();
-					s_cell(t_vect p_coord, bool p_obstacle, int p_sprite);
+					s_cell(bool p_obstacle, int p_sprite);
 }					t_cell;
 
 typedef struct		s_player
@@ -49,6 +48,7 @@ typedef struct		s_game_engine
 	t_player		player;
 	vector<t_ghost>	ghost_list;
 					s_game_engine(string p_path);
+	void			draw_board();
 }					t_game_engine;
 
 #endif

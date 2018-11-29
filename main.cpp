@@ -16,6 +16,8 @@ int main(int argc, char **argv)
 	{
 		prepare_screen(t_color(0.2, 0.2, 0.2));
 
+		test.draw_board();
+
 		render_screen();
 
 		if (SDL_PollEvent(&event) == 1)
@@ -24,6 +26,14 @@ int main(int argc, char **argv)
 				quit = true;
 			else if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)
 				quit = true;
+			else if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_UP)
+				test.player.coord.y--;
+			else if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_DOWN)
+				test.player.coord.y++;
+			else if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_LEFT)
+				test.player.coord.y--;
+			else if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_RIGHT)
+				test.player.coord.y++;
 		}
 	}
 	return 0;
