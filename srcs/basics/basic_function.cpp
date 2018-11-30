@@ -84,3 +84,8 @@ t_vect				second_degree_solver(double a, double b, double e, double c, double d,
 		error_exit("Error on calc cell", 15642);
 	return (t_vect(x, y));
 }
+
+int					random_int(int min, int max)
+{
+	return (rand() % max + min);
+}

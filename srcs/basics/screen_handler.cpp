@@ -32,6 +32,7 @@ void				window_initialisation(string window_name)
 	int				win_x;
 	int				win_y;
 
+	srand (time(NULL));
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
