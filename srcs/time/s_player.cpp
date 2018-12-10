@@ -10,6 +10,9 @@ s_player::s_player()
 	this->score = 0;
 	this->path.clear();
 	this->path.push_back(this->coord);
+	this->hp_string = "hp : " + to_string(this->hp.value) + "/" + to_string(this->hp.max);
+	this->score_string = "score : " + to_string(this->score);
+	this->move_string = "move : " + to_string(this->move.value) + "/" + to_string(this->move.max);
 }
 
 s_player::s_player(t_vect p_coord, int p_hp, int p_move, int p_sprite)
@@ -22,4 +25,22 @@ s_player::s_player(t_vect p_coord, int p_hp, int p_move, int p_sprite)
 	this->score = 0;
 	this->path.clear();
 	this->path.push_back(this->coord);
+	this->hp_string = "hp : " + to_string(this->hp.value) + "/" + to_string(this->hp.max);
+	this->score_string = "score : " + to_string(this->score);
+	this->move_string = "move : " + to_string(this->move.value) + "/" + to_string(this->move.max);
+}
+
+void	s_player::reset_hp_string()
+{
+	this->hp_string = "hp : " + to_string(this->hp.value) + "/" + to_string(this->hp.max);
+}
+
+void	s_player::reset_move_string()
+{
+	this->move_string = "move : " + to_string(this->move.value) + "/" + to_string(this->move.max);
+}
+
+void	s_player::reset_score_string()
+{
+	this->score_string = "score : " + to_string(this->score);
 }

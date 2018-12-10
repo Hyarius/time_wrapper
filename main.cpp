@@ -18,6 +18,18 @@ int main(int argc, char **argv)
 
 	t_player *player = map.player_ptr;
 
+	gui.add(new s_button(new s_text_button( &(player->hp_string), BLACK, //text info
+									gui.unit * t_vect(7, 18), gui.unit * t_vect(3, 1), 4, //object info
+									t_color(0.7, 0.7, 0.7), t_color(0.9, 0.9, 0.9)), NULL, NULL));
+
+	gui.add(new s_button(new s_text_button( &(player->score_string), BLACK, //text info
+									gui.unit * t_vect(12, 18), gui.unit * t_vect(6, 1), 4, //object info
+									t_color(0.7, 0.7, 0.7), t_color(0.9, 0.9, 0.9)), NULL, NULL));
+
+	gui.add(new s_button(new s_text_button( &(player->move_string), BLACK, //text info
+									gui.unit * t_vect(20, 18), gui.unit * t_vect(3, 1), 4, //object info
+									t_color(0.7, 0.7, 0.7), t_color(0.9, 0.9, 0.9)), NULL, NULL));
+
 	while (quit == false)
 	{
 		prepare_screen();
@@ -35,6 +47,14 @@ int main(int argc, char **argv)
 				quit = true;
 			else if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT)
 				gui.click();
+			else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP)
+				map.move_actor(0, -1);
+			else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_DOWN)
+				map.move_actor(0, 1);
+			else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT)
+				map.move_actor(1, 0);
+			else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LEFT)
+				map.move_actor(-1, 0);
 		}
 	}
 	return 0;

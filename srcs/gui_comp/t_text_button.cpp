@@ -11,21 +11,7 @@ s_text_button::s_text_button(	string *p_text, int p_text_color, //text info
 	coord[1] = p_coord + border;
 	size[1] = p_size - (border * 2);
 	coord[2] = coord[1] + size[1] / 2;
-	if (text != NULL && *text != "")
-	{
-		text_size = calc_text_size(*text, size[1]);
-		surface = TTF_RenderText_Blended(get_font(text_size), p_text->c_str(), get_color(p_text_color));
-		if (surface == NULL)
-			error_exit("can't create the text to text_button", 3567);
-		text_image = new t_image(surface);
-		image_coord = t_vect(coord[2].x - text_image->surface->w / 2, coord[2].y - text_image->surface->h / 2);
-		image_size = t_vect(text_image->surface->w, text_image->surface->h);
-	}
-	else
-	{
-		text_size = -1;
-		text_image = NULL;
-	}
+	text_size = -1;
 	color[0] = p_color1;
 	color[1] = p_color2;
 	funct = NULL;
@@ -37,9 +23,7 @@ void		s_text_button::draw_self()
 {
 	for (int i = 0 ; i < 2 ; i++)
 		draw_rectangle(coord[i], size[i], color[i]);
-	if (text_image != NULL)
-		text_image->draw_self(image_coord, image_size);
-	else if (text != NULL && *text != "")
+	if (text != NULL && *text != "")
 	{
 		if (text_size == -1 || size[1].x > calc_text_len(*text, text_size)
 							|| size[1].y > get_char(text_size, BLACK, 'M')->surface->h)
