@@ -58,11 +58,14 @@ typedef struct		s_game_board
 {
 	vector<vector<t_cell>>
 					cell_layer;
-	vector<t_actor *>
-					actor_list;
+	t_actor			*player_ptr;
+	vector<t_enemy *>
+					ghost_list;
 	vector<vector<t_object *>>
 					object_layer;
 	t_tileset		tile;
+	t_vect			sprite_size;
+	t_vect			offset;
 					s_game_board();
 					s_game_board(int size_x, int size_y);
 	void 			draw_board();

@@ -2,14 +2,7 @@
 
 s_game_board::s_game_board()
 {
-	this->cell_layer.resize(0);
-	this->actor_list.resize(0);
-	this->object_layer.resize(0);
-	for (int i = 0; i < 0; i++)
-	{
-		this->cell_layer[i].resize(0);
-		this->object_layer[i].resize(0);
-	}
+
 }
 
 static t_cell generate_cell(t_vect p_coord)
@@ -61,7 +54,7 @@ static t_cell generate_cell(t_vect p_coord, int type)
 
 s_game_board::s_game_board(int size_x, int size_y)
 {
-	tile = s_tileset("ressources/assets/texture.png", t_vect(4, 5));
+	tile = s_tileset("ressources/assets/texture.png", t_vect(4, 3));
 	int i, j;
 	this->cell_layer.resize(size_x);
 	this->object_layer.resize(size_x);
@@ -87,7 +80,12 @@ s_game_board::s_game_board(int size_x, int size_y)
 		i = generate_nbr(0, size_x);
 		j = generate_nbr(0, size_y);
 	}
-	this->actor_list.push_back(new t_player(t_vect(i, j), 5, 30, 4));
+	this->player_ptr = new t_player(t_vect(i, j), 5, 30, 4);
+	i = (get_win_size().x) / size_x;
+	j = (get_win_size().y / 30 * 24) / size_y;
+	this->sprite_size = t_vect((i > j ? j : i), (i > j ? j : i));
+	this->offset = t_vect((double)((get_win_size().x - sprite_size.x * size_x) / 2.0),
+					(double)(get_win_size().y / 30 * 24 - sprite_size.y * size_y) / 2);
 }
 
 void		s_game_board::ascii_print()
@@ -100,13 +98,13 @@ void		s_game_board::ascii_print()
 		while (j < this->cell_layer.size())
 		{
 			if (this->cell_layer[j][i].sprite == 2 || this->cell_layer[j][i].sprite == 3)
-				printf("\e[0;31m");
+				cout << "\e[0;31m";
 			else
-				printf("\e[1;34m");
-			printf("%d", this->cell_layer[j][i].sprite);
+				cout << "\e[1;34m";
+			cout << this->cell_layer[j][i].sprite;
 			j++;
 		}
-		printf("\n");
+		cout << "\n";
 		i++;
 	}
 }
@@ -119,11 +117,11 @@ void 			s_game_board::draw_board()
 		j = 0;
 		while (j < cell_layer[i].size())
 		{
-			this->tile.prepare_print(t_vect(50 * i, 50 * j), t_vect(50, 50), cell_layer[i][j].sprite);
+			this->tile.prepare_print(t_vect(sprite_size.x * i, sprite_size.y * j) + offset, sprite_size, cell_layer[i][j].sprite);
 			j++;
 		}
 		i++;
 	}
-	this->tile.prepare_print(actor_list[0]->coord * 50, t_vect(50, 50), actor_list[0]->sprite);
+	this->tile.prepare_print(player_ptr->coord * sprite_size + offset, sprite_size, player_ptr->sprite);
 	render_triangle_texture(this->tile.texture_id);
 }
