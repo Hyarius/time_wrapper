@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 
 		map.draw_board();
 
-		render_screen();
+		render_screen(true);
 
 		if (SDL_PollEvent(&(event)) == 1)
 		{
@@ -55,6 +55,7 @@ int main(int argc, char **argv)
 				map.move_actor(1, 0);
 			else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_LEFT)
 				map.move_actor(-1, 0);
+			map.check_turn(&gui);
 		}
 	}
 	return 0;

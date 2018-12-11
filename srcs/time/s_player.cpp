@@ -30,6 +30,24 @@ s_player::s_player(t_vect p_coord, int p_hp, int p_move, int p_sprite)
 	this->move_string = "move : " + to_string(this->move.value) + "/" + to_string(this->move.max);
 }
 
+void	s_player::print_path()
+{
+	int i = 0;
+	while (i < this->path.size())
+	{
+		printf("[%.0f / %.0f]", path[i].x, path[i].y);
+		if (i != path.size() - 1)
+			printf(" - ");
+		i++;
+	}
+	printf("\n");
+}
+
+void	s_player::reset_move_count()
+{
+	this->move.value = this->move.max;
+}
+
 void	s_player::reset_hp_string()
 {
 	this->hp_string = "hp : " + to_string(this->hp.value) + "/" + to_string(this->hp.max);

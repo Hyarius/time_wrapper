@@ -11,9 +11,8 @@ s_enemy::s_enemy()
 	this->path.push_back(this->coord);
 }
 
-s_enemy::s_enemy(vector<t_vect> p_path, int p_sprite, int p_vision)
+s_enemy::s_enemy(int p_sprite, int p_vision)
 {
-	this->coord = p_path[0];
 	this->sprite = p_sprite;
 	this->dir = 0;
 	this->vision = p_vision;

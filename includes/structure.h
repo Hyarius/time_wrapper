@@ -27,6 +27,7 @@ typedef struct		s_actor
 	int				sprite;
 	int				dir;
 	vector<t_vect>	path;
+	vector<int>		dir_list;
 					s_actor();
 					s_actor(int p_sprite);
 }					t_actor;
@@ -41,6 +42,8 @@ typedef struct		s_player : s_actor
 	string			score_string;
 					s_player();
 					s_player(t_vect p_coord, int p_hp, int p_move, int p_sprite);
+	void			print_path();
+	void			reset_move_count();
 	void			reset_hp_string();
 	void			reset_move_string();
 	void			reset_score_string();
@@ -51,7 +54,7 @@ typedef struct		s_enemy : s_actor
 	int				index;
 	int				vision;
 					s_enemy();
-					s_enemy(vector<t_vect> p_path, int p_sprite, int p_vision);
+					s_enemy(int p_sprite, int p_vision);
 }					t_enemy;
 
 typedef void		(*t_event)(t_player *player);
@@ -69,28 +72,32 @@ typedef struct		s_game_board
 {
 	t_vect			size;
 	int				level;
-	vector<vector<t_cell>>
-					cell_layer;
-	t_player		*player_ptr;
-	vector<t_enemy *>
-					ghost_list;
-	vector<vector<t_object *>>
-					object_layer;
-	vector<t_object *>
-					object_list;
+	vector<vector<t_cell>>		cell_layer;
+	t_player					*player_ptr;
+	vector<t_enemy *>			ghost_list;
+	vector<vector<t_object *>>	object_layer;
+	vector<vector<t_object *>>	vision_layer;
+	vector<t_object *>			object_list;
 	t_tileset		tile;
 	t_vect			sprite_size;
 	t_vect			offset;
+	int				count;
 					s_game_board();
 					s_game_board(int size_x, int size_y);
 	void 			draw_board();
+	void 			draw_ghost();
 	void			ascii_print();
+	void			move_ghost();
+	void			calc_ghost_vision(int i);
+	void			reset_ghost_vision();
 	void			move_actor(int coord_x, int coord_y);
 	void			place_object(int object, int nb);
 	void			generate_map();
 	void			place_player(t_player *player);
 	void			reset_object();
+	void			set_object_list();
 	void			generate_level();
+	void			check_turn(t_gui *old_gui);
 
 }					t_game_board;
 
