@@ -172,13 +172,6 @@ void			s_game_board::move_actor(int coord_x, int coord_y)
 			player_ptr->dir_list.push_back(2);
 		}
 		player_ptr->reset_move_string();
-		if (count == 30)
-		{
-			ghost_list.push_back(new s_enemy(8, 1));
-			count = 0;
-		}
-		else
-			count++;
 		move_ghost();
 		if (object_layer[player_ptr->coord.x][player_ptr->coord.y] != NULL)
 		{
@@ -196,12 +189,11 @@ void			s_game_board::check_turn(t_gui *old_gui)
 {
 	if (player_ptr->move.value <= 0)
 	{
-		if (player_ptr->score / 100 > level)
+		if (player_ptr->score / 10 > level)
 		{
 			message_next_level(old_gui, this);
 			generate_map();
-			ghost_list.clear();
-			player_ptr->path.clear();
+			ghost_list.push_back(new s_enemy(8, 1));
 			count = 0;
 			level = player_ptr->score / 100;
 		}
