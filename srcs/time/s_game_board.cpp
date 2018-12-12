@@ -200,6 +200,9 @@ void			s_game_board::check_turn(t_gui *old_gui)
 		{
 			message_next_level(old_gui, this);
 			generate_map();
+			ghost_list.clear();
+			player_ptr->path.clear();
+			count = 0;
 			level = player_ptr->score / 100;
 		}
 		generate_level();
