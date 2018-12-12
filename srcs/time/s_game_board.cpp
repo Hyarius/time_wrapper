@@ -189,7 +189,7 @@ void			s_game_board::check_turn(t_gui *old_gui)
 {
 	if (player_ptr->move.value <= 0)
 	{
-		if (player_ptr->score / 10 > level)
+		if (player_ptr->score / 50 > level)
 		{
 			message_next_level(old_gui, this);
 			generate_map();
