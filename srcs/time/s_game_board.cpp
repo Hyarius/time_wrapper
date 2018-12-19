@@ -148,6 +148,7 @@ void			s_game_board::move_actor(int coord_x, int coord_y)
 {
 	if (cell_layer[player_ptr->coord.x + coord_x][player_ptr->coord.y + coord_y].wall == false)
 	{
+		count++;
 		player_ptr->coord = t_vect(player_ptr->coord.x + coord_x, player_ptr->coord.y + coord_y);
 		player_ptr->move.value--;
 		player_ptr->path.push_back(player_ptr->coord);
@@ -189,16 +190,25 @@ void			s_game_board::check_turn(t_gui *old_gui)
 {
 	if (player_ptr->move.value <= 0)
 	{
-		if (player_ptr->score / 50 > level)
+		if (player_ptr->score / 100 > level)
 		{
 			message_next_level(old_gui, this);
 			generate_map();
-			ghost_list.push_back(new s_enemy(8, 1));
+			ghost_list.clear();
+			player_ptr->path.clear();
 			count = 0;
 			level = player_ptr->score / 100;
 		}
 		generate_level();
 		player_ptr->reset_move_count();
+	}
+	else
+	{
+		if (count >= 30)
+		{
+			ghost_list.push_back(new s_enemy(8, 1));
+			count = 0;
+		}
 	}
 	if (player_ptr->hp.value <= 0)
 	{
