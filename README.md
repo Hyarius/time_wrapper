@@ -1,8 +1,7 @@
 # time_wrapper
 
-This is a quick project made with my library, to help me create it.
+This is a quick project made with my library, to test it.
 
-In this game, you have multiple objects on the ground. After 30 mouvements from you, one ghost will appread, and once more every 30 steps.
-The goal of the game is to reach gem on the board, to gain point, without been seen by the ghost (the ghost vision is represented by the red mark on the floor).
+The goal of the game is to get a high score by obtaining gems scattered on the board. Each 30 steps, a ghost will appear that will copy your movements. You lose if they see you (their vision is represented in red).
 
 ![Starting_menu](ressources/readme/test.gif)
